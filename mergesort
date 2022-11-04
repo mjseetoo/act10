@@ -1,11 +1,14 @@
-package act10;
+
+package act11;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
-public class act10 {
+public class MergeSort {
 
-	public ArrayList<Integer> merge(ArrayList<Integer>left ,ArrayList<Integer>right ){
+	public static ArrayList<Integer> merge(ArrayList<Integer>left ,ArrayList<Integer>right ){
 		ArrayList<Integer> returnArray = new ArrayList<Integer>();
 		
 		int i = 0, j = 0;
@@ -29,20 +32,11 @@ public class act10 {
 			}
 		}
 		
-		/*Iterator it = left.iterator();
-		while(it.hasNext()) {
-			returnArray.add((Integer) it.next());
-		}
-		Iterator rightIt = right.iterator();
-		while(rightIt.hasNext()) {
-			returnArray.add((Integer) rightIt.next());
-		}*/
-		
 		return returnArray;
 		
 		
 	}
-	public void mergeSort(ArrayList<Integer> arrList){
+	public static void mergeSort(ArrayList<Integer> arrList){
 		int count = arrList.size();
 		if (count<2) {
 			return;
@@ -51,7 +45,7 @@ public class act10 {
 		ArrayList<Integer> left = new ArrayList<Integer>();
 		ArrayList<Integer> right = new ArrayList<Integer>();
 		
-		Iterator it = arrList.iterator();
+		Iterator<Integer> it = arrList.iterator();
 		int counter = 0;
 		while (it.hasNext() && counter < mid) {
 			left.add(arrList.get(counter));
@@ -65,5 +59,25 @@ public class act10 {
 		mergeSort(right);
 		
 		merge(left, right);
+		
+	}
+	public static void main(String[] args) {
+		
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		Scanner kbd = new Scanner(System.in);
+		System.out.println("Enter numbers separated by spaces: ");
+		
+		String line = kbd.nextLine();
+		
+		StringTokenizer st = new StringTokenizer(line, " ");
+		
+		while(st.hasMoreTokens()) {
+			list.add(Integer.parseInt(st.nextToken()));
+		}
+		
+		mergeSort(list);
+		
+		System.out.println(list);
+
 	}
 }
